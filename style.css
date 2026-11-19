@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Cairo', 'Inter', sans-serif;
+}
+
+html[lang="en"] body {
+    font-family: 'Inter', 'Cairo', sans-serif;
+}
+
+input:focus {
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.15);
+}
+
+html[dir="rtl"] table th,
+html[dir="rtl"] table td {
+    text-align: right;
+}
+
+html[dir="ltr"] table th,
+html[dir="ltr"] table td {
+    text-align: left;
+}
