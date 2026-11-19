@@ -21,3 +21,27 @@ html[dir="ltr"] table th,
 html[dir="ltr"] table td {
     text-align: left;
 }
+
+/* هيلايت على آخر صفين متطابقين في الجدول */
+.match-row {
+    background-color: rgba(0, 242, 254, 0.12);
+    border-right: 3px solid #00f2fe;
+}
+
+html[dir="ltr"] .match-row {
+    border-right: none;
+    border-left: 3px solid #00f2fe;
+}
+
+html:not(.dark) .match-row {
+    background-color: rgba(9, 132, 227, 0.12);
+}
+
+.match-value {
+    color: #00f2fe;
+    font-weight: 700;
+}
+
+html:not(.dark) .match-value {
+    color: #0984e3;
+}

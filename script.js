@@ -163,6 +163,7 @@ function calculateNewton() {
         let xi = x0;
         const safetyLimit = 1000;
         const decimals = 5;
+        let hasMatchedLastTwo = false;
 
         for (let i = 0; i < safetyLimit; i++) {
             const fxi = f.evaluate({ x: xi });
@@ -197,6 +198,7 @@ function calculateNewton() {
                     xNext: xNext
                 });
                 xi = xNext;
+                hasMatchedLastTwo = true;
                 break;
             }
 
@@ -211,13 +213,19 @@ function calculateNewton() {
         const tbody = document.getElementById('table-body');
         tbody.innerHTML = '';
 
-        iterations.forEach(row => {
+        iterations.forEach((row, index) => {
+            const isLastTwoMatched = hasMatchedLastTwo && index >= iterations.length - 2;
+            const rowClass = isLastTwoMatched
+                ? 'match-row transition'
+                : 'hover:bg-gray-50 dark:hover:bg-gray-700/30 transition';
+            const xClass = isLastTwoMatched ? 'match-value' : '';
+
             tbody.innerHTML += `
-                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition">
+                <tr class="${rowClass}">
                     <td class="py-3 px-4 font-semibold">${row.i}</td>
-                    <td class="py-3 px-4">${formatNum(row.xi, decimals)}</td>
-                    <td class="py-3 px-4">${formatNum(row.fxi, decimals)}</td>
-                    <td class="py-3 px-4">${formatNum(row.dfxi, decimals)}</td>
+                    <td class="py-3 px-4 ${xClass}" dir="ltr">${formatNum(row.xi, decimals)}</td>
+                    <td class="py-3 px-4" dir="ltr">${formatNum(row.fxi, decimals)}</td>
+                    <td class="py-3 px-4" dir="ltr">${formatNum(row.dfxi, decimals)}</td>
                 </tr>
             `;
         });
